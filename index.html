@@ -33,20 +33,26 @@
                 <li><img src="assets/icons/php.png" class="linguaIcon" tooltip="<strong>PHP</strong>"/></li>
                 <li><img src="assets/icons/hardware.png" class="linguaIcon" tooltip="<strong>Desktop Hardware</strong>"/></li>
             </ul>
-            <ul class="apresentacao-perfil">
+            <ul class="apresentacao-perfil" id="githubApi">
                 <li class="githubProfile"><img src="assets/icons/github.png" class="linguaIcon"/><a href="https://github.com/xrkmed" target="_blank"><strong>Guilherme Martins - <small>@xrkmed</small></strong></a></li>
-                <ul class="githubStatus">
-                    <li><img style="border-radius: 60px; width: 96px; height: 96px;" id="git_profileImg"/></li>
-                    <li class="gitBio" id="git_bio"><strong>undefined</strong></li>
-                </ul>
-
-                <ul class="githubDetails">
-                    <li id="git_bioApi">undefined</li>
-                </ul>
-
-                <ul class="githubDetails">
-                    <a class="git_button" href="#" target="_blank"><strong>Ir para <img src="assets/icons/github.png" style="width: 16px; height: 16px; border-radius: 10px; margin-left: 5px; margin-right: 5px;"/> GitHub.com</strong></a>
-                </ul>
+                
+                <div style="visibility: visible;" id="loadingGithub">
+                    <li><img style="width: 32px; height: 32px;" src="./assets/loading.gif" /></li>
+                </div>
+                <div style="visibility: collapse;" id="githubSucessfully">
+                    <ul class="githubStatus">
+                        <li><img style="border-radius: 60px; width: 96px; height: 96px;" id="git_profileImg"/></li>
+                        <li class="gitBio" id="git_bio"><strong>undefined</strong></li>
+                    </ul>
+    
+                    <ul class="githubDetails">
+                        <li id="git_bioApi">undefined</li>
+                    </ul>
+    
+                    <ul class="githubDetails">
+                        <a class="git_button" href="#" target="_blank"><strong>Ir para <img src="assets/icons/github.png" style="width: 16px; height: 16px; border-radius: 10px; margin-left: 5px; margin-right: 5px;"/> GitHub.com</strong></a>
+                    </ul>
+                </div>
             </ul>
 
             <ul class="iconsProjects">

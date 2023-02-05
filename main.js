@@ -14,7 +14,7 @@ window.addEventListener('load', event => {
 
     async function load(){
     const octokit = new Octokit({
-        auth: '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'
+        auth: '' //não necessita de TOKEN pois é uma chamada simples.
       })
       
      const result = await octokit.request('GET /users/{username}', {
@@ -22,6 +22,9 @@ window.addEventListener('load', event => {
       })
 
       if(result.status == 200){
+        document.querySelector('#loadingGithub').style = "visibility: collapse; display: none;";
+        document.querySelector('#githubSucessfully').style = "visibility: visible;";
+
       let descriptionProfile = document.querySelector('#git_bioApi');
       let gitBio = document.querySelector('#git_bio');
       let gitProfile = document.querySelector('#git_profileImg');
@@ -41,8 +44,6 @@ window.addEventListener('load', event => {
       }
 
       document.querySelector('.git_button').href = result.data.html_url
-
-      console.log(result);
     }
 
 
