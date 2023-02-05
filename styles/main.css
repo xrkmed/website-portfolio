@@ -1,12 +1,12 @@
 body {
     background-image: url('../assets/background.png');
     background-repeat: no-repeat;
-    background-color: #68A060;
-    position: fixed;
+    background-attachment: fixed;
+    margin: 0;
     min-width: 100%;
     min-height: 100%;
-    margin: 0;
     color: #ffff;
+    overflow-x: hidden;
 }
 
 .nav-ui-header{
@@ -46,7 +46,7 @@ li a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 4vw;
+    padding-top: 4vw;
     font-family: 'Unbounded';
     line-height: .5vw;
 }
@@ -312,10 +312,39 @@ li a {
 
 .githubStatus{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     list-style-type: none;
+    font-size: 12px;
+}
+
+.git_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1d1d1d;
+    border-radius: 20px;
+    cursor: pointer;
+    color: rgb(251, 255, 0);
+    transition: transform .32s;
+    text-decoration: none;
+}
+
+.git_button:hover{
+    transform: scale(1.2);
+}
+
+.githubDetails{
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
     font-size: 12px;
 }
 
@@ -452,6 +481,13 @@ li a {
     cursor: pointer;
     transition: color .32s;
     font-size: 32px;
+}
+
+.gitBio{
+    line-height: .32px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+    font-size: 16px;
 }
 
 .btnArrow:hover{

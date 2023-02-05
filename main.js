@@ -1,15 +1,60 @@
 import Lightbox from './assets/js/lightbox.js';
 import Tooltip from './assets/js/tooltip.js';
-
+import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
 
 Tooltip.activate();
 Lightbox.activate();
+
+window.addEventListener('load', event => {
+    load();
+
+    let loadedList = new Array();
+    loadedList["projects"] = false;
+    loadedList["commits"] = false;
+
+    async function load(){
+    const octokit = new Octokit({
+        auth: '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'
+      })
+      
+     const result = await octokit.request('GET /users/{username}', {
+        username: 'xrkmed'
+      })
+
+      if(result.status == 200){
+      let descriptionProfile = document.querySelector('#git_bioApi');
+      let gitBio = document.querySelector('#git_bio');
+      let gitProfile = document.querySelector('#git_profileImg');
+
+      if(descriptionProfile){
+        descriptionProfile.innerHTML = "<strong> " + result.data.public_repos + "</strong> public projects.</br>📍 - " + result.data.location + ".";
+        loadedList["projects"] = true;
+      }
+
+      if(gitBio){
+        gitBio.innerHTML = `“<small>` + result.data.bio + `</small>”`;
+        loadedList["commits"] = true;
+      }
+
+      if(gitProfile){
+        gitProfile.src = result.data.avatar_url;
+      }
+
+      document.querySelector('.git_button').href = result.data.html_url
+
+      console.log(result);
+    }
+
+
+    }
+});
+
 let projects = document.querySelectorAll('.projectType');
 for(let i = 0; i < projects.length; ++i){
     projects[i].addEventListener('mouseenter', e => {
         if(!projects[i].over){            
             projects[i].children[1].oldColor = projects[i].children[1].style.color;
-            projects[i].children[1].style.color = "#242424";
+            projects[i].children[1].style.color = "#a3a3a3";
 
             projects[i].over = true;
         }
@@ -24,12 +69,16 @@ for(let i = 0; i < projects.length; ++i){
     });
 }
 
+window.addEventListener('onscrollchange', event => {
+    Tooltip.disable();
+});
+
 let iconsTooltip = document.querySelectorAll('.experienciasIcon .linguaIcon');
 for(let i = 0; i < iconsTooltip.length; ++i){
     iconsTooltip[i].addEventListener('mouseenter', e => {
         if(!iconsTooltip[i].over){            
             iconsTooltip[i].over = true;
-            Tooltip.show(iconsTooltip[i].getBoundingClientRect().top+(iconsTooltip[i].getBoundingClientRect().top*12/100), iconsTooltip[i].getBoundingClientRect().left, iconsTooltip[i].getAttribute("tooltip"));
+            Tooltip.show(iconsTooltip[i].getBoundingClientRect().top+(iconsTooltip[i].getBoundingClientRect().top*12/100)+(window.scrollY/10), iconsTooltip[i].getBoundingClientRect().left, iconsTooltip[i].getAttribute("tooltip"));
         }
     });
 
