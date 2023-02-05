@@ -28,10 +28,10 @@ window.addEventListener('onscrollchange', event => {
     Tooltip.disable();
 });
 
-let iconsTooltip = document.querySelectorAll('.experienciasIcon .linguaIcon');
+let iconsTooltip = document.querySelectorAll('.linguaIcon');
 for(let i = 0; i < iconsTooltip.length; ++i){
     iconsTooltip[i].addEventListener('mouseenter', e => {
-        if(!iconsTooltip[i].over){            
+        if(!iconsTooltip[i].over && iconsTooltip[i].getAttribute("tooltip")){            
             iconsTooltip[i].over = true;
             Tooltip.show(iconsTooltip[i].getBoundingClientRect().top+(iconsTooltip[i].getBoundingClientRect().top*12/100)+(window.scrollY/10), iconsTooltip[i].getBoundingClientRect().left, iconsTooltip[i].getAttribute("tooltip"));
         }
